@@ -44,6 +44,13 @@ setup_zsh() {
 
 main() {
   echo "🚀 Starting dotfiles setup..."
+
+  echo "Ensuring ~/.dotfiles directory exists..."
+  mkdir -p "${HOME}/.dotfiles"
+
+  echo "Updating submodules..."
+  git -C "${DOTFILES_ROOT}" submodule update --init --recursive
+  echo "Submodules are up to date."
   
   setup_bash
   echo "---"
