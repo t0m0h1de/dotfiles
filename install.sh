@@ -29,11 +29,11 @@ setup_bash() {
 setup_zsh() {
   echo "Setting up oh-my-zsh..."
 
-  # 1. ~/.oh-my-zsh へのシンボリックリンクを作成
   ln -sfn "${DOTFILES_ROOT}/oh-my-zsh" "${HOME}/.oh-my-zsh"
 
-  # 2. zshrcのテンプレートをホームディレクトリにコピー
-  #    oh-my-zshはテンプレート内で読み込み設定を行うため、追記は不要
+  # Create symlinks for Zsh plugins
+  ln -sfn "${DOTFILES_ROOT}/zsh-plugins" "${HOME}/.dotfiles/zsh-plugins"
+
   cp "${DOTFILES_ROOT}/templates/zshrc.template" "${HOME}/.zshrc"
 
   echo "✅ oh-my-zsh setup complete."
