@@ -5,35 +5,27 @@
 # This script sets up oh-my-bash and oh-my-zsh using submodules.
 # ---
 
-set -e # エラーが発生したらスクリプトを終了する
+set -e
 
-# スクリプトが置かれているディレクトリの絶対パスを取得
-# これにより、どこから実行されてもパスがずれないようにする
 DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # --- Functions ---
 
-# oh-my-bashのセットアップ
 setup_bash() {
   echo "Setting up oh-my-bash..."
 
-  # 1. ~/.oh-my-bash へのシンボリックリンクを作成
-  #    -s: シンボリックリンク
-  #    -f: リンク先が既に存在する場合、強制的に上書き
-  #    -n: リンク先がディレクトリの場合に、その中ではなくリンク自体を置き換える
   ln -sfn "${DOTFILES_ROOT}/oh-my-bash" "${HOME}/.oh-my-bash"
+  ln -sfn "${DOTFILES_ROOT}/bash-completion" "${HOME}/.dotfiles/bash-completion"
+  ln -sfn "${DOTFILES_ROOT}/ble.sh" "${HOME}/.dotfiles/ble.sh"
 
-  # 2. bashrcのテンプレートをホームディレクトリにコピー
   cp "${DOTFILES_ROOT}/templates/bashrc.template" "${HOME}/.bashrc"
 
-  # 3. .bashrc に oh-my-bash を読み込む設定を追記
   echo -e '\n# Load Oh My Bash from dotfiles' >> "${HOME}/.bashrc"
   echo "source \"${HOME}/.oh-my-bash/oh-my-bash.sh\"" >> "${HOME}/.bashrc"
 
   echo "✅ oh-my-bash setup complete."
 }
 
-# oh-my-zshのセットアップ
 setup_zsh() {
   echo "Setting up oh-my-zsh..."
 
@@ -61,5 +53,4 @@ main() {
   echo "Please start a new shell session (or run 'source ~/.bashrc' or 'source ~/.zshrc') to see the changes."
 }
 
-# スクリプトの実行
 main

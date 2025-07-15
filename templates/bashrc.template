@@ -3,10 +3,48 @@
 # This file is managed by my dotfiles repository.
 # ===============================================
 
+# --- Bash-Native Vi Mode ---
+# Enable Vi keybindings in the shell.
+set -o vi
+
+# --- bash-completion ---
+# Load enhanced completions from the bash-completion submodule.
+# NOTE: The official bash-completion script needs to be sourced.
+source "${HOME}/.dotfiles/bash-completion/bash_completion"
+
+# --- ble.sh (autosuggestions) ---
+# Load ble.sh for fish-like autosuggestions.
+# NOTE: This must be sourced *before* oh-my-bash.
+source "${HOME}/.dotfiles/ble.sh/ble.sh" --no-inputrc
+
+# --- Oh My Bash Settings ---
+
+# Set the theme for Oh My Bash.
+# A list of themes is available at: https://github.com/ohmybash/oh-my-bash/wiki/Themes
+OSH_THEME="rana"
+
+# Set the plugins to load.
+# A list of plugins is available at: https://github.com/ohmybash/oh-my-bash/wiki/Plugins
+plugins=(
+  git
+  # Add other plugins here, e.g., 'docker', 'node'
+)
+
+# --- Your Custom Settings ---
+
 # Your custom aliases and functions can go here.
 # Example:
-# alias ll='ls -alF'
-# alias la='ls -A'
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
 
+# vi settings                                         
+$if mode=vi                
+    # normal mode                           
+    set keymap vi-command                                 
+    # insert mode             
+    set keymap vi-insert                          
+    "jj": vi-movement-mode # remap escape   
+$endif 
 
 # NOTE: The line to load oh-my-bash will be added automatically by install.sh

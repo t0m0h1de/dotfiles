@@ -9,7 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="dst"
 
 # Example of plugins to load.
 plugins=(
@@ -18,11 +18,22 @@ plugins=(
   # Add other plugins here
 )
 
-# Your custom aliases and functions can go here.
-# Example:
-# alias ll='ls -alF'
+# --- Your Custom Settings ---
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+
+# zsh vi mode
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 
 
-# Load oh-my-zsh
-# IMPORTANT: This line should be at the end of the file.
+# --- Load external plugins from submodules ---
+# This section should be AFTER theme/plugin settings but BEFORE sourcing oh-my-zsh.sh
+
+source "${HOME}/.dotfiles/zsh-plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "${HOME}/.dotfiles/zsh-plugins/zsh-completions/zsh-completions.plugin.zsh"
+source "${HOME}/.dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+
+# --- Load Oh My Zsh ---
+# This must be the last line of the Zsh configuration.
 source $ZSH/oh-my-zsh.sh
