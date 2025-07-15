@@ -1,0 +1,12 @@
+# ===============================================
+# My Custom Bash Settings
+# This file is managed by my dotfiles repository.
+# ===============================================
+
+# Your custom aliases and functions can go here.
+# Example:
+# alias ll='ls -alF'
+# alias la='ls -A'
+
+
+# NOTE: The line to load oh-my-bash will be added automatically by install.sh

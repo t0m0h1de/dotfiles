@@ -4,3 +4,18 @@
 [submodule "oh-my-bash"]
 	path = oh-my-bash
 	url = https://github.com/ohmybash/oh-my-bash.git
+[submodule "bash-completion"]
+	path = bash-completion
+	url = https://github.com/scop/bash-completion.git
+[submodule "ble.sh"]
+	path = ble.sh
+	url = https://github.com/akinomyoga/ble.sh.git
+[submodule "zsh-plugins/zsh-vi-mode"]
+	path = zsh-plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode.git
+[submodule "zsh-plugins/zsh-completions"]
+	path = zsh-plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "zsh-plugins/zsh-autosuggestions"]
+	path = zsh-plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
