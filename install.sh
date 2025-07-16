@@ -16,12 +16,12 @@ setup_bash() {
 
   ln -sfn "${DOTFILES_ROOT}/oh-my-bash" "${HOME}/.oh-my-bash"
   ln -sfn "${DOTFILES_ROOT}/bash-completion" "${HOME}/.dotfiles/bash-completion"
-  ln -sfn "${DOTFILES_ROOT}/ble.sh" "${HOME}/.dotfiles/ble.sh"
 
   cp "${DOTFILES_ROOT}/templates/bashrc.template" "${HOME}/.bashrc"
 
   echo -e '\n# Load Oh My Bash from dotfiles' >> "${HOME}/.bashrc"
-  echo "source \"${HOME}/.oh-my-bash/oh-my-bash.sh\"" >> "${HOME}/.bashrc"
+  echo "export OSH=\"${HOME}/.oh-my-bash\"" >> "${HOME}/.bashrc"
+  echo "source \"\$OSH/oh-my-bash.sh\"" >> "${HOME}/.bashrc"
 
   echo "✅ oh-my-bash setup complete."
 }
