@@ -3,6 +3,9 @@
 # This file is managed by my dotfiles repository.
 # ===============================================
 
+# --- Nix ---
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
 # --- Bash-Native Vi Mode ---
 # Enable Vi keybindings in the shell.
 set -o vi
@@ -37,3 +40,5 @@ alias la='ls -A'
 bind '"jj":vi-movement-mode'
 
 # NOTE: The line to load oh-my-bash will be added automatically by install.sh
+
+
