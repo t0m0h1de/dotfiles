@@ -29,11 +29,6 @@ setup_bash() {
 setup_zsh() {
   echo "Setting up oh-my-zsh..."
 
-  ln -sfn "${DOTFILES_ROOT}/oh-my-zsh" "${HOME}/.oh-my-zsh"
-
-  # Create symlinks for Zsh plugins
-  ln -sfn "${DOTFILES_ROOT}/zsh-plugins" "${HOME}/.dotfiles/zsh-plugins"
-
   cp "${DOTFILES_ROOT}/templates/zshrc.template" "${HOME}/.zshrc"
 
   echo "✅ oh-my-zsh setup complete."

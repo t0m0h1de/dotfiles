@@ -3,37 +3,59 @@
 # This file is managed by my dotfiles repository.
 # ===============================================
 
-# This is the path to your oh-my-zsh installation.
-# IMPORTANT: This path must be set for oh-my-zsh to work.
-export ZSH="$HOME/.oh-my-zsh"
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-# Set name of the theme to load.
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="dst"
+# 補完の有効化
+autoload -Uz compinit && compinit
+# 部分一致や大文字小文字を無視して補完する設定
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# Example of plugins to load.
-plugins=(
-  git
-  z
-  # Add other plugins here
-)
+# default editor
+export EDITOR=$(which vim)
 
-# --- Your Custom Settings ---
+# ヒストリ設定
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+# 重複したものは残さない
+setopt hist_ignore_dups
+setopt share_history
+
+# ls with color
 alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 
+# zaw.zsh
+bindkey '^H' zaw-history
+
+# .local/bin
+if [ -e ${HOME}/.local/bin ]; then
+  export PATH=${PATH}:${HOME}/.local/bin
+fi
+
+# .cargo/bin
+if [ -e ${HOME}/.cargo/bin ]; then
+  export PATH=${PATH}:${HOME}/.cargo/bin
+fi
+
+# sheldon
+if command -v sheldon &> /dev/null; then
+  eval "$(sheldon source)"
+fi
+
+# startship
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+
 # zsh vi mode
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 
+# oc completion
+if [ -e ${HOME}/.oc-completion-zsh.sh ]; then
+  source ${HOME}/.oc-completion-zsh.sh
+fi
 
-# --- Load external plugins from submodules ---
-# This section should be AFTER theme/plugin settings but BEFORE sourcing oh-my-zsh.sh
 
-source "${HOME}/.dotfiles/zsh-plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-source "${HOME}/.dotfiles/zsh-plugins/zsh-completions/zsh-completions.plugin.zsh"
-source "${HOME}/.dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-
-# --- Load Oh My Zsh ---
-# This must be the last line of the Zsh configuration.
-source $ZSH/oh-my-zsh.sh
